@@ -1,0 +1,9 @@
+{
+    "name": "Modelkit Config",
+    "scopeName": "source.modelkitconfig",
+    "patterns": [
+      {
+        "include": "source.toml"
+      }
+    ]
+  }
