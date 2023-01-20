@@ -92,7 +92,8 @@
       {
         "id": "energyplus--modelkit",
         "aliases": ["EnergyPlus/Modelkit"],
-        "extensions": [".ddy", ".edd", ".idf", ".imf", ".mdd", ".rdd", ".pxt", ".pxv"]
+        "extensions": [".ddy", ".edd", ".idf", ".imf", ".mdd", ".rdd", ".pxt", ".pxv"],
+        "configuration": "./languages/energyplus-modelkit-configuration.json"
       }
       ,
       {
