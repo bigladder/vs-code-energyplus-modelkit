@@ -22,13 +22,15 @@ To use Modelkit snippets, type in the initial characters of the code black you w
 
 ### Toggle Comments
 
-This extension includes two commands for toggling comments: **Toggle EnergyPlus Comments** for adding and removing "!" from the beginning of lines in IDF, IMF, and PXT files, and **Toggle Modelkit Comments** for adding and removing "#" from the beginning of lines in IMF and PXT files. There are three options for accessing these commands:
+This extension enables the **Toggle Line Comment** command in VS Code found under the *Edit / Toggle Line Comment* menu (keybinding: `ctrl` + `/`) to toggle EnergyPlus comments (lines starting with "!").
+
+Additionally, this extenion includes two commands for toggling comments: **Toggle EnergyPlus Comments** for adding and removing "!" from the beginning of lines in IDF, IMF, and PXT files, and **Toggle Modelkit Comments** for adding and removing "#" from the beginning of lines in IMF and PXT files. There are three options for accessing these commands:
 
 - From the *View / Command Pallette* menu (keyboard shortcut: `Ctrl` + `Shift` + `P`)
 - From the context menu found by right-clicking within an active file
 - Using keybindings (`Shift` + `Ctrl` + `1` for **Toggle EnergyPlus Comments** and `Shift` + `Ctrl` + `3` for **Toggle Modelkit Comments**)
 
-These commands can be used for a single line or multiple selected lines. If multiple lines are selected, the extension will evaluate each line separatel to know whether to add or remove the comment character. This is different behavior than the native **Toggle Line Comment** command in VS Code found under the *Edit / Toggle Line Comment* menu for standard filetypes.
+These commands can be used for a single line or multiple selected lines. If multiple lines are selected, the extension will evaluate each line separately to know whether to add or remove the comment character. This is different behavior than the native **Toggle Line Comment** command in VS Code (if any selected line is NOT commented, adds comment character to ALL lines).
 
 The keybindings are defined in `package.json` under `contributes:keybindings` and can be reconfigured, if you desire.
 
