@@ -16,7 +16,7 @@ At the right of the auto-complete window, you will be able to see a description 
 
 The gif below shows an example of using snippets to generate a `Version` and `Building` object, as well as toggling the preview feature.
 
-![snippets](images/snippets.gif)
+![Snippets example](images/snippets.gif)
 
 To use Modelkit snippets, type in the initial characters of the code black you want to insert. Select the appropriate snippet in the auto-complete window the same way you would for an EnergyPlus snippet. Note that there are different snippets whether you want to insert code already bound by Ruby brackets or insert code with new Ruby brackets.
 
@@ -33,6 +33,15 @@ Additionally, this extenion includes two commands for toggling comments: **Toggl
 These commands can be used for a single line or multiple selected lines. If multiple lines are selected, the extension will evaluate each line separately to know whether to add or remove the comment character. This is different behavior than the native **Toggle Line Comment** command in VS Code (if any selected line is NOT commented, adds comment character to ALL lines).
 
 The keybindings are defined in `package.json` under `contributes:keybindings` and can be reconfigured, if you desire.
+
+### View Input Output Reference
+
+This extension includes a **View Input Output Reference** command, which can open an internet browser window outside of VS Code for the selected object class. There are two options for accessing these commands:
+
+- From the *View / Command Pallette* menu (keyboard shortcut: `Ctrl` + `Shift` + `P`)
+- From the context menu found by right-clicking within an active file
+
+![View IO Ref example](images/view-io-ref.gif)
 
 ## Release Notes
 

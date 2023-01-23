@@ -4,6 +4,7 @@ import { exit } from 'process';
 import * as vscode from 'vscode';
 import {commentUtils} from "./comment-utils";
 import {getExtension} from "./comment-utils";
+import {objectUtils} from "./object-utils";
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -14,6 +15,10 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand('energyplus--modelkit.toggleModelkitComments', () => {
 		toggleComments("#");
 	}));
+
+	context.subscriptions.push(vscode.commands.registerCommand('energyplus--modelkit.viewIORef', () => {
+        checkEPObjectClass();
+    }));
 
 	context.subscriptions.push(vscode.languages.setLanguageConfiguration('energyplus--modelkit', {
 		onEnterRules: [
@@ -47,6 +52,27 @@ export function toggleComments ( prefix : string) {
 
 		// use function from comment-utils.coffee to add or remove comments
 		commentUtils( docRange, ext, editor, prefix );
+	}
+	else {
+		vscode.window.showInformationMessage('Editor is undefined!');
+		return false;
+	}
+}
+
+export function checkEPObjectClass ( ) {
+    const editor = vscode.window.activeTextEditor;
+
+	if (editor) {
+		const document = editor.document;
+
+		let selected = editor.selections;
+		let start = selected[0].start; // start position of first selected range
+		let end = selected[0].end; // end position of first selected range
+		
+		const docRange = new vscode.Range( start, end );
+
+		// use function from object-utils.ts to check if selected text is an EnergyPlus object and open browser tab for Input Output Reference web docs
+		objectUtils( docRange, editor );
 	}
 	else {
 		vscode.window.showInformationMessage('Editor is undefined!');

@@ -30,7 +30,8 @@
   ],
   "activationEvents": [
     "onCommand:energyplus--modelkit.toggleEnergyPlusComments",
-    "onCommand:energyplus--modelkit.toggleModelkitComments"
+    "onCommand:energyplus--modelkit.toggleModelkitComments",
+    "onCommand:energyplus--modelkit.viewIORef"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -43,6 +44,10 @@
         {
           "command": "energyplus--modelkit.toggleModelkitComments",
           "when": "editorLangId == energyplus--modelkit"
+        },
+        {
+          "command": "energyplus--modelkit.viewIORef",
+          "when": "editorLangId == energyplus--modelkit"
         }
       ],
       "editor/context": [
@@ -52,6 +57,10 @@
         },
         {
           "command": "energyplus--modelkit.toggleModelkitComments",
+          "when": "editorLangId == energyplus--modelkit"
+        },
+        {
+          "command": "energyplus--modelkit.viewIORef",
           "when": "editorLangId == energyplus--modelkit"
         }
       ]
@@ -64,6 +73,10 @@
       {
         "command": "energyplus--modelkit.toggleModelkitComments",
         "title": "Toggle Modelkit Comments"
+      },
+      {
+        "command": "energyplus--modelkit.viewIORef",
+        "title": "View Input Output Reference"
       }
     ],
     "keybindings": [

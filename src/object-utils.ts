@@ -1,40 +1,41 @@
+import { json } from 'stream/consumers';
 import * as vscode from 'vscode';
+import { resourceLimits } from 'worker_threads';
 
 // comment or un-comment lines in selected range from document
-export function objectUtils ( docRange: vscode.Range ) {
+export function objectUtils ( docRange: vscode.Range, editor: vscode.TextEditor ) {
 
-    // read IDF snippets file
-    console.log("Reading snippets file ...");
+    // check if selection has characters
+    var selectedText: string = editor.document.getText(docRange);
 
-    // var fs = require('fs');
-    // var idfSnippets;
-    // fs.readFile('../snippets/snippets-idf.json', 'utf8', function (err, data) {
-    //     if (err) throw err;
-    //     idfSnippets = JSON.parse(data);
-    //   });    
-    // console.log("Test 1 ...");
-
-    // var fs = require('fs');
-    // var idfSnippets = JSON.parse(fs.readFileSync('../snippets/snippets-idf.json', 'utf8'));
-    // console.log("Test 2 ...");
-
-    var idfSnippets = require('../snippets/snippets-idf.json');
-    console.log("Test 3 ...");
-   
-    // build array of EnergyPlus object classes from snippets file
-    var objectClasses:string[]; // create array store EnergyPlus object classes
-
-    console.log("idfSnippets:");
-    console.log(idfSnippets);
-
-    idfSnippets.forEach(function(snippet:any, i:any) {
-        for (var prefix in snippet) {
-        //    console.log(i, prefix, snippet[prefix]);
-           objectClasses.push(prefix);
-        }
+    if (selectedText.length === 0) {
+      vscode.window.showErrorMessage('No text selected. Please select text for an EnergyPlus object class before using this command.');
+      return false;
+    }
+    else {
+      // create map of object classes (keys) and IO Ref URLs (values) from IDF snippets   
+      var idfSnippets = require('../snippets/snippets-idf.json');
+      var objectsMap = new Map();
+      Object.keys(idfSnippets).forEach(function(key) {
+        var snippet = idfSnippets[key];
+        objectsMap.set(snippet.prefix, snippet.descriptionMoreURL);
       });
 
-      console.log("objectClasses:");
-  
+      // build list of object classes from map
+      var objectClasses: string[] = [];
+      for (let entry of objectsMap.entries()) {
+        objectClasses.push(entry[0]);
+      }
+
+      // check if selected text is an element in object classes list
+      if (objectClasses.some((element, index) => {return element === selectedText; })) {
+        // get URL from map and open externally from VS Code
+        var objectURL: string = objectsMap.get(selectedText);
+        vscode.env.openExternal(vscode.Uri.parse(objectURL));
+      }
+      else {
+        vscode.window.showErrorMessage("'" + selectedText + "' is NOT in list of EnergyPlus Object Classes.\nPlease change your selection to link to Input Output Reference correctly.");
+      }
+    } 
 }
 
