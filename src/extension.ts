@@ -8,19 +8,19 @@ import {objectUtils} from "./object-utils";
 
 export function activate(context: vscode.ExtensionContext) {
 
-	context.subscriptions.push(vscode.commands.registerCommand('energyplus--modelkit.toggleEnergyPlusComments', () => {
+	context.subscriptions.push(vscode.commands.registerCommand('energyplus-modelkit.toggleEnergyPlusComments', () => {
 		toggleComments("!");
 	}));
 
-	context.subscriptions.push(vscode.commands.registerCommand('energyplus--modelkit.toggleModelkitComments', () => {
+	context.subscriptions.push(vscode.commands.registerCommand('energyplus-modelkit.toggleModelkitComments', () => {
 		toggleComments("#");
 	}));
 
-	context.subscriptions.push(vscode.commands.registerCommand('energyplus--modelkit.viewIORef', () => {
+	context.subscriptions.push(vscode.commands.registerCommand('energyplus-modelkit.viewIORef', () => {
         checkEPObjectClass();
     }));
 
-	context.subscriptions.push(vscode.languages.setLanguageConfiguration('energyplus--modelkit', {
+	context.subscriptions.push(vscode.languages.setLanguageConfiguration('energyplus-modelkit', {
 		onEnterRules: [
 			{
 				// If entering new line below final input field, remove indentation
