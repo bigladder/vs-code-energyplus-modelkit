@@ -21,4 +21,5 @@ jobs:
       - name: Upload package artifact
         uses: actions/upload-artifact@v2.2.4
         with:
+          name: energyplus-modelkit.vsix
           path: energyplus-modelkit-*.vsix
