@@ -43,4 +43,4 @@ This extension includes a **View Input Output Reference** command, which can ope
 
 ![View IO Ref example](images/view-io-ref.gif)
 
-## See [Change Log](CHANGELOG.MD) for release notes
+## See [Change Log](CHANGELOG.md) for release notes
