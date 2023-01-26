@@ -7,7 +7,7 @@
   "displayName": "EnergyPlus & Modelkit",
   "description": "Syntax highlighting, auto-completion of text via snippets, and other features to improve workflows with EnergyPlus & Modelkit files.",
   "icon": "images/ladder-icon-square.jpg",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "repository": {
     "type":    "git",
     "url":     "https://github.com/bigladder/vs-code-energyplus-modelkit"
