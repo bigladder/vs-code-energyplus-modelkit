@@ -29,66 +29,97 @@
     "Programming Languages", "Snippets"
   ],
   "activationEvents": [
-    "onCommand:energyplus-modelkit.toggleEnergyPlusComments",
-    "onCommand:energyplus-modelkit.toggleModelkitComments",
-    "onCommand:energyplus-modelkit.viewIORef"
+    "onCommand:energyplus.toggleEnergyPlusComments",
+    "onCommand:modelkit.toggleEnergyPlusComments",
+    "onCommand:modelkit.toggleModelkitComments",
+    "onCommand:energyplus.viewIORef",
+    "onCommand:modelkit.viewIORef"
     ],
   "main": "./out/extension.js",
   "contributes": {
     "menus": {
       "commandPalette": [
         {
-          "command": "energyplus-modelkit.toggleEnergyPlusComments",
-          "when": "editorLangId == energyplus-modelkit"
+          "command": "energyplus.toggleEnergyPlusComments",
+          "when": "editorLangId == energyplus"
         },
         {
-          "command": "energyplus-modelkit.toggleModelkitComments",
-          "when": "editorLangId == energyplus-modelkit"
+          "command": "modelkit.toggleEnergyPlusComments",
+          "when": "editorLangId == modelkit"
         },
         {
-          "command": "energyplus-modelkit.viewIORef",
-          "when": "editorLangId == energyplus-modelkit"
+          "command": "modelkit.toggleModelkitComments",
+          "when": "editorLangId == modelkit"
+        },
+        {
+          "command": "energyplus.viewIORef",
+          "when": "editorLangId == energyplus"
+        },
+        {
+          "command": "modelkit.viewIORef",
+          "when": "editorLangId == modelkit"
         }
       ],
       "editor/context": [
         {
-          "command": "energyplus-modelkit.toggleEnergyPlusComments",
-          "when": "editorLangId == energyplus-modelkit"
+          "command": "energyplus.toggleEnergyPlusComments",
+          "when": "editorLangId == energyplus"
         },
         {
-          "command": "energyplus-modelkit.toggleModelkitComments",
-          "when": "editorLangId == energyplus-modelkit"
+          "command": "modelkit.toggleEnergyPlusComments",
+          "when": "editorLangId == modelkit"
         },
         {
-          "command": "energyplus-modelkit.viewIORef",
-          "when": "editorLangId == energyplus-modelkit"
+          "command": "modelkit.toggleModelkitComments",
+          "when": "editorLangId == modelkit"
+        },
+        {
+          "command": "energyplus.viewIORef",
+          "when": "editorLangId == energyplus"
+        },
+        {
+          "command": "modelkit.viewIORef",
+          "when": "editorLangId == modelkit"
         }
       ]
     },
     "commands": [
       {
-        "command": "energyplus-modelkit.toggleEnergyPlusComments",
+        "command": "energyplus.toggleEnergyPlusComments",
         "title": "Toggle EnergyPlus Comments"
       },
       {
-        "command": "energyplus-modelkit.toggleModelkitComments",
+        "command": "modelkit.toggleEnergyPlusComments",
+        "title": "Toggle EnergyPlus Comments"
+      },
+      {
+        "command": "modelkit.toggleModelkitComments",
         "title": "Toggle Modelkit Comments"
       },
       {
-        "command": "energyplus-modelkit.viewIORef",
+        "command": "energyplus.viewIORef",
+        "title": "View Input Output Reference"
+      },
+      {
+        "command": "modelkit.viewIORef",
         "title": "View Input Output Reference"
       }
     ],
     "keybindings": [
       {
         "key": "ctrl+shift+1",
-        "command": "energyplus-modelkit.toggleEnergyPlusComments",
-        "when": "editorLangId == energyplus-modelkit"
+        "command": "energyplus.toggleEnergyPlusComments",
+        "when": "editorLangId == energyplus"
+      },
+      {
+        "key": "ctrl+shift+1",
+        "command": "modelkit.toggleEnergyPlusComments",
+        "when": "editorLangId == modelkit"
       },
       {
         "key": "ctrl+shift+3",
-        "command": "energyplus-modelkit.toggleModelkitComments",
-        "when": "editorLangId == energyplus-modelkit"
+        "command": "modelkit.toggleModelkitComments",
+        "when": "editorLangId == modelkit"
       }
     ],
     "languages": [
@@ -103,12 +134,17 @@
         "extensions": [".err"]
       },
       {
-        "id": "energyplus-modelkit",
-        "aliases": ["EnergyPlus/Modelkit"],
-        "extensions": [".ddy", ".edd", ".idf", ".imf", ".mdd", ".rdd", ".pxt", ".pxv"],
+        "id": "energyplus",
+        "aliases": ["EnergyPlus"],
+        "extensions": [".ddy", ".edd", ".idf", ".imf", ".mdd", ".rdd"],
         "configuration": "./languages/energyplus-modelkit-configuration.json"
-      }
-      ,
+      },
+      {
+        "id": "modelkit",
+        "aliases": ["Modelkit"],
+        "extensions": [".pxt", ".pxv"],
+        "configuration": "./languages/energyplus-modelkit-configuration.json"
+      },
       {
         "id": "modelkit-config",
         "aliases": ["Modelkit Config"],
@@ -126,9 +162,14 @@
         "scopeName": "source.err"
       },
       {
-        "language": "energyplus-modelkit",
+        "language": "energyplus",
         "path": "./syntaxes/language-idf.json",
         "scopeName": "source.v9.0.idf"
+      },
+      {
+        "language": "modelkit",
+        "path": "./syntaxes/language-modelkit.json",
+        "scopeName": "source.modelkit"
       },
       {
         "language": "modelkit-config",
@@ -138,14 +179,19 @@
     ],
     "snippets": [
       {
-        "language": "energyplus-modelkit",
+        "language": "energyplus",
         "path": "./snippets/snippets-idf.json",
         "scopeName": ".source.v9.0.idf"
       },
       {
-        "language": "energyplus-modelkit",
+        "language": "modelkit",
         "path": "./snippets/snippets-modelkit.json",
         "scopeName": ".source.modelkit"
+      },
+      {
+        "language": "modelkit",
+        "path": "./snippets/snippets-idf.json",
+        "scopeName": ".source.v9.0.idf"
       }
     ]
   },

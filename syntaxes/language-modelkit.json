@@ -1,6 +1,6 @@
 {
-  "name": "EnergyPlus v9.0",
-  "scopeName": "source.v9.0.idf",
+  "name": "Modelkit",
+  "scopeName": "source.modelkit",
   "patterns": [
     {
       "comment": "Line comments",
@@ -55,9 +55,29 @@
           "name": "comment.line.inline.idf"
         },
         {
+          "comment": "Modelkit Content",
+          "begin": "<%",
+          "end": "%>",
+          "patterns": [
+            {
+              "include": "source.ruby"
+            }
+          ]        
+        },
+        {
           "comment": "Snippet Fields",
           "match": "\\?\\?\\?",
           "name": "storage.input.idf"
+        }
+      ]
+    },
+    {
+      "comment": "Modelkit Input Data",
+      "begin": "<%",
+      "end": "%>",
+      "patterns": [
+        {
+          "include": "source.ruby"
         }
       ]
     }

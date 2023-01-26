@@ -8,19 +8,39 @@ import {objectUtils} from "./object-utils";
 
 export function activate(context: vscode.ExtensionContext) {
 
-	context.subscriptions.push(vscode.commands.registerCommand('energyplus-modelkit.toggleEnergyPlusComments', () => {
+	context.subscriptions.push(vscode.commands.registerCommand('energyplus.toggleEnergyPlusComments', () => {
 		toggleComments("!");
 	}));
 
-	context.subscriptions.push(vscode.commands.registerCommand('energyplus-modelkit.toggleModelkitComments', () => {
+	context.subscriptions.push(vscode.commands.registerCommand('modelkit.toggleEnergyPlusComments', () => {
+		toggleComments("!");
+	}));
+
+	context.subscriptions.push(vscode.commands.registerCommand('modelkit.toggleModelkitComments', () => {
 		toggleComments("#");
 	}));
 
-	context.subscriptions.push(vscode.commands.registerCommand('energyplus-modelkit.viewIORef', () => {
+	context.subscriptions.push(vscode.commands.registerCommand('energyplus.viewIORef', () => {
         checkEPObjectClass();
     }));
 
-	context.subscriptions.push(vscode.languages.setLanguageConfiguration('energyplus-modelkit', {
+	context.subscriptions.push(vscode.commands.registerCommand('modelkit.viewIORef', () => {
+        checkEPObjectClass();
+    }));
+
+	context.subscriptions.push(vscode.languages.setLanguageConfiguration('energyplus', {
+		onEnterRules: [
+			{
+				// If entering new line below final input field, remove indentation
+				beforeText: /^\s*\S*;\s*\S*!/, // RegEx test for text before cursor (should be at end of line, after any comments)
+				action: {
+					indentAction: vscode.IndentAction.Outdent
+				},
+			},
+		],
+	}));
+
+	context.subscriptions.push(vscode.languages.setLanguageConfiguration('modelkit', {
 		onEnterRules: [
 			{
 				// If entering new line below final input field, remove indentation
