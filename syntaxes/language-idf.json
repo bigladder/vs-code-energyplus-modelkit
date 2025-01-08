@@ -1,6 +1,6 @@
 {
-  "name": "EnergyPlus v9.0",
-  "scopeName": "source.v9.0.idf",
+  "name": "EnergyPlus",
+  "scopeName": "source.idf",
   "patterns": [
     {
       "comment": "Line comments",

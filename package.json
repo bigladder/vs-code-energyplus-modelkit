@@ -178,7 +178,7 @@
       {
         "language": "energyplus",
         "path": "./syntaxes/language-idf.json",
-        "scopeName": "source.v9.0.idf"
+        "scopeName": "source.idf"
       },
       {
         "language": "modelkit",
