@@ -193,19 +193,9 @@
     ],
     "snippets": [
       {
-        "language": "energyplus",
-        "path": "./snippets/snippets-idf.json",
-        "scopeName": ".source.v9.0.idf"
-      },
-      {
         "language": "modelkit",
         "path": "./snippets/snippets-modelkit.json",
         "scopeName": ".source.modelkit"
-      },
-      {
-        "language": "modelkit",
-        "path": "./snippets/snippets-idf.json",
-        "scopeName": ".source.v9.0.idf"
       }
     ]
   },
