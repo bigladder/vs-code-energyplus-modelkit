@@ -37,6 +37,20 @@
     ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "EnergyPlus Version",
+      "properties": {
+        "energyplus-modelkit.energyPlusVersion": {
+          "type": "string",
+          "enum": [
+            "9.0"
+          ],
+          "default": "9.0",
+          "description": "Select EnergyPlus version for autocompletion of objects."
+        }
+      }
+    },
     "menus": {
       "commandPalette": [
         {
