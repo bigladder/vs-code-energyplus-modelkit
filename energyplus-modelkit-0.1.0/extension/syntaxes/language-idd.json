@@ -1,0 +1,60 @@
+{
+  "name": "EnergyPlus IDD",
+  "scopeName": "source.idd",
+  "patterns": [
+    {
+      "comment": "EnergyPlus object group",
+      "begin": "(\\\\group)",
+      "beginCaptures": {
+        "0": {
+          "name": "entity.name.class.group.idf"
+        }
+      },
+      "end": "$",
+      "name": "entity.name.class.idf"
+    },
+    {
+      "comment": "Line comments",
+      "begin": "!|(\\\\memo)|(\\\\note)",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.idf"
+        }
+      },
+      "end": "$",
+      "name": "comment.line.idf"
+    },
+    {
+      "comment": "EnergyPlus Object Class",
+      "name": "variable.language.object.class.idf",
+      "match": "^\\s*([a-zA-Z]+[:a-zA-Z]*,)"
+    },
+    {
+      "comment": "Field IDD Comments",
+      "name": "constant.language.idd.field.idf",
+      "begin": "[\\\\](field)",
+      "end": "$",
+      "patterns": [
+        {
+          "comment": "Field Name",
+          "match": "\\s[A-Z].*",
+          "captures": {
+            "0": {
+              "name": "entity.idd.idf"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "comment": "Important IDD Comments",
+      "name": "keyword.idd.idf",
+      "match": "[\\\\]((default)|(autosizable)|(autocalculatable)|(min-fields)|(required-field)|(unique-object)|(required-object)).*"
+    },
+    {
+      "comment": "Minor IDD Comments",
+      "name": "string.idd.idf",
+      "match": "[\\\\]((type)|(key)|(minimum)>?|(maximum)<?)"
+    }
+  ]
+}

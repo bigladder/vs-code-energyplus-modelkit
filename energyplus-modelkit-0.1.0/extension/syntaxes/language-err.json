@@ -1,0 +1,21 @@
+{
+    "name": "EnergyPlus ERR",
+    "scopeName": "source.err",
+    "patterns": [
+      {
+        "comment": "Warning",
+        "match": " Warning",
+        "name": "token.warn-token.idf"
+      },
+      {
+        "comment": "Severe & Fatal Errors",
+        "match": "Severe Errors|Severe|Fatal error|Fatal|EnergyPlus Terminated",
+        "name": "token.error-token.idf"
+      },
+      {
+        "comment": "Successful Final Message",
+        "match": "EnergyPlus Completed Successfully",
+        "name": "keyword.idf"
+      }
+    ]
+  }

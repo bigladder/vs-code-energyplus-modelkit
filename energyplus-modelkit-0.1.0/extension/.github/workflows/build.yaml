@@ -1,0 +1,25 @@
+name: Build Extension
+
+on: push
+
+jobs:
+  package-extension:
+    name: Build Extension
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install VSCE
+        run: npm install --global @vscode/vsce
+      - name: Install dependencies
+        run: npm install
+      - name: Package extension
+        run: vsce package --no-rewrite-relative-links
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: energyplus-modelkit.vsix
+          path: energyplus-modelkit-*.vsix

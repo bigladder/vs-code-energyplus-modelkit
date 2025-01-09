@@ -1,0 +1,85 @@
+{
+  "name": "Modelkit",
+  "scopeName": "source.modelkit",
+  "patterns": [
+    {
+      "comment": "Line comments",
+      "begin": "!",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.comment.idf"
+        }
+      },
+      "end": "$",
+      "name": "comment.line.idf"
+    },
+    {
+      "comment": "EnergyPlus Input Data",
+      "name": "meta.energyplus.idf",
+      "begin": "^\\s*([^0-9!,;][^!,;]*)\\s*,",
+      "end": ";",
+      "beginCaptures": {
+        "1": {
+          "comment": "Class Names",
+          "name": "storage.type.idf"
+        }
+      },
+      "patterns": [
+        {
+          "comment": "String",
+          "match": "[^!,;<%]*[a-df-zA-DF-Z][^!,;]*",
+          "captures": {
+            "0": {
+              "name": "string.idf"
+            }
+          }
+        },
+        {
+          "comment": "Number",
+          "match": "(^|,|\\s*)\\s*(-?(0|[1-9][0-9]*)(\\.[0-9]*)?((e|E)(\\+|-)[0-9]+)?)\\s*",
+          "captures": {
+            "0": {
+              "name": "constant.numeric.idf"
+            }
+          }
+        },
+        {
+          "comment": "In-line comments",
+          "begin": "!",
+          "beginCaptures": {
+            "3": {
+              "name": "punctuation.definition.comment.inline.idf"
+            }
+          },
+          "end": "$",
+          "name": "comment.line.inline.idf"
+        },
+        {
+          "comment": "Modelkit Content",
+          "begin": "<%",
+          "end": "%>",
+          "patterns": [
+            {
+              "include": "source.ruby"
+            }
+          ]        
+        },
+        {
+          "comment": "Snippet Fields",
+          "match": "\\?\\?\\?",
+          "name": "storage.input.idf"
+        }
+      ]
+    },
+    {
+      "comment": "Modelkit Input Data",
+      "begin": "<%",
+      "end": "%>",
+      "patterns": [
+        {
+          "include": "source.ruby"
+        }
+      ]
+    }
+  ]
+}
