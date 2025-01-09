@@ -8,6 +8,8 @@ import {objectUtils} from "./object-utils";
 const fs = require('fs');
 const path = require('path');
 
+let completionItemProvider: vscode.Disposable | undefined;
+
 export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(vscode.commands.registerCommand('energyplus.toggleEnergyPlusComments', () => {
@@ -56,6 +58,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// when extension is activated, load EnergyPlus snippets file for selected version
 	loadEnergyPlusSnippets();
+
+	// when the EnergyPlus version configuration changes, load snippets file for new version
+	context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((event) => {
+		if (event.affectsConfiguration('energyplus-modelkit.energyPlusVersion')) {
+			loadEnergyPlusSnippets();
+		}
+	}));
 }
 
 export function toggleComments ( prefix : string) {
@@ -117,6 +126,11 @@ export function loadEnergyPlusSnippets () {
 			return;
 		}
 
+		// Dispose existing snippets defined as completionItemProvider, if it exists
+		if (completionItemProvider) {
+			completionItemProvider.dispose();
+		}
+
 		// Parse the snippets file to create a new list of completionItems
 		const snippets = JSON.parse(data);
 		const completionItems: vscode.CompletionItem[] = Object.keys(snippets).map(key => {
@@ -148,4 +162,9 @@ ${snippet.description}`);
 }
 
 // This method is called when your extension is deactivated
-export function deactivate(): void {}
+export function deactivate() {
+    // Dispose of the completion item provider when the extension is deactivated
+    if (completionItemProvider) {
+        completionItemProvider.dispose();
+    }
+}
