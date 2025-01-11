@@ -1,0 +1,13 @@
+[template-compose]
+annotate = true
+indent = "    "
+esc-line = "! "
+readvars = true
+
+dirs = '~/Documents/Modelkit Catalyst/templates/net-zero-templates'  # Must be an absolute path
+
+[energyplus-run]
+engine = 'C:\EnergyPlusV22-2-0'  # Must be an absolute path
+
+keep = false
+output-files = "eplusout.err; eplusout.rdd; eplusout.sql; eplustbl.htm; eplusvar.csv"
