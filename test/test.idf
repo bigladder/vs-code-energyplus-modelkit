@@ -16,5 +16,3 @@ Building,
 
 ! Example `Building` as single-line object
 Building, Exercise 1 Solution, 0.0,    Suburbs,     0.04,      0.40,     FullInteriorAndExterior,     25,     6;
-
-! TODO: commas before numeric fields are formatted as numerics, which shouldn't happen
