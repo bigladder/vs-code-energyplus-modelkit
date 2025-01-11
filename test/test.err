@@ -1,0 +1,47 @@
+Program Version,EnergyPlus, Version 9.5.0-de239b2e5f, YMD=2022.03.23 10:59,
+   ************* Beginning Zone Sizing Calculations
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="ALWAYS OFF DISCRETE", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="ALWAYS ON CONTINUOUS", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Severe  ** InitConductionTransferFunctions: Found Material that is too thin and/or too highly conductive, material name = METAL DECKING 2"
+   **   ~~~   ** High conductivity Material layers are not well supported for internal source constructions, material conductivity = 45.006 [W/m-K]
+   **   ~~~   ** Material thermal diffusivity = 1.401E-005 [m2/s]
+   **   ~~~   ** Material with this thermal diffusivity should have thickness > 0.19446 [m]
+   ************* ===== Recurring Error Summary =====
+   ************* The following recurring error messages occurred.
+   *************
+   *************
+   *************  ** Severe  ** ChillerHeaterPerformance:Electric:EIR="CHILLER HEATER PERFORMANCE ELECTRIC EIR 1": Reference temperature problems continue.
+   *************  **   ~~~   **   This error occurred 191840 total times;
+   *************  **   ~~~   **   during Warmup 5424 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-4.725885E-006 deltaC  Min=-4.448162E-002 deltaC
+   *************
+   *************  ** Warning ** Plant loop exceeding upper temperature limit, PlantLoop="HW LOOP"
+   *************  **   ~~~   **   This error occurred 4383 total times;
+   *************  **   ~~~   **   during Warmup 221 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=217.6
+   *************
+   ************* ===== Final Error Summary =====
+   ************* The following error categories occurred.  Consider correcting or noting.
+   ************* Loads Initialization did not Converge
+   ************* ..1) very high thermal mass such as very thick concrete (solution: increase max number of warmup
+   ************* ..   days in the BUILDING object);
+   ************* ..2) moderate mass and inadequate space conditioning such that the building keeps getting warmer
+   ************* ..   and warmer on successive days (solution: add HVAC, check building thermal properties,
+   ************* ..   check if infiltration is included, make sure HVAC properly controlled);
+   ************* ..3) a soil layer modeled below the concrete slab - (solution remove this layer and read about
+   ************* ..   ground temperatures in the Auxiliary Programs document).
+   ************* ..4) unreasonable (too small) limits in the BUILDING object for temperature (.4 default) or
+   ************* ..   loads tolerances (.04 default)
+   ************* Nominally Unused Constructions
+   ************* ..The nominally unused constructions warning is provided to alert you to potential conditions that can cause
+   ************* ..extra time during simulation. Each construction is calculated by the algorithm indicated in the HeatBalanceAlgorithm
+   ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
+   *************
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 11 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 37 Warning; 1 Severe Errors.
+   ************* EnergyPlus Completed Successfully-- 2013013 Warning; 210122 Severe Errors; Elapsed Time=00hr 02min 33.46sec
+
+Example of simulation NOT finishing
+   ************* EnergyPlus Terminated--Fatal Error Detected. 28778482 Warning; 15 Severe Errors; Elapsed Time=00hr 19min  9.56sec

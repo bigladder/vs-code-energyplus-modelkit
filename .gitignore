@@ -51,8 +51,8 @@ Thumbs.db
 # VS Code output files
 out/
 
-# test files
-test/
+# test script files
+src/test/
 
 # packaged VSIX
 *.vsix
