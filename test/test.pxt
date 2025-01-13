@@ -60,6 +60,10 @@ end
     No,                      !- Do Zone Sizing Calculation
     No,                      !- Do System Sizing Calculation
 <% end %>
+<% # test single-line comment within IDF lines %>
+<%
+# TODO: same issue here as well between EnergyPlus object input fields
+%>
     No,                      !- Do Plant Sizing Calculation
     No,                      !- Run Simulation for Sizing Periods
     Yes,                     !- Run Simulation for Weather File Run Periods
