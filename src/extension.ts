@@ -5,6 +5,10 @@ import * as vscode from 'vscode';
 import {commentUtils} from "./comment-utils";
 import {getExtension} from "./comment-utils";
 import {objectUtils} from "./object-utils";
+const fs = require('fs');
+const path = require('path');
+
+let completionItemProvider: vscode.Disposable | undefined;
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -50,6 +54,16 @@ export function activate(context: vscode.ExtensionContext) {
 				},
 			},
 		],
+	}));
+
+	// when extension is activated, load EnergyPlus snippets file for selected version
+	loadEnergyPlusSnippets();
+
+	// when the EnergyPlus version configuration changes, load snippets file for new version
+	context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((event) => {
+		if (event.affectsConfiguration('energyplus-modelkit.energyPlusVersion')) {
+			loadEnergyPlusSnippets();
+		}
 	}));
 }
 
@@ -100,5 +114,57 @@ export function checkEPObjectClass ( ) {
 	}
 }
 
+// load snippets file of object autocompletion for selected EnergyPlus version
+export function loadEnergyPlusSnippets () {
+    const config = vscode.workspace.getConfiguration('energyplus-modelkit');
+    const version = config.get('energyPlusVersion', 'v9.0'); // default to v9.0
+    const snippetsPath = path.join(__dirname, '..', 'snippets', `snippets-v${version.replace('.','-')}-idf.json`); // match snippets file name
+
+    fs.readFile(snippetsPath, 'utf8', (err: Error, data : string) => {
+		if (err) {
+			vscode.window.showErrorMessage(`Error loading snippets: ${err.message}`);
+			return;
+		}
+
+		// Dispose existing snippets defined as completionItemProvider, if it exists
+		if (completionItemProvider) {
+			completionItemProvider.dispose();
+		}
+
+		// Parse the snippets file to create a new list of completionItems
+		const snippets = JSON.parse(data);
+		const completionItems: vscode.CompletionItem[] = Object.keys(snippets).map(key => {
+			const snippet = snippets[key];
+			const item = new vscode.CompletionItem(snippet.prefix, vscode.CompletionItemKind.Snippet);
+			item.insertText = new vscode.SnippetString(snippet.body);
+			item.label = key;
+			item.documentation = new vscode.MarkdownString(`[Input Output Reference](${snippet.descriptionMoreURL})
+
+${snippet.description}`);
+			// MarkdownString allows for hyperlink like 'More...' URL feature of snippets
+			// Using literal new lines to separate hyperlink from description since this is template literal string
+			item.detail = snippet.body;
+			return item;
+		});
+
+		// Register new snippets as completionItemProvider
+		completionItemProvider = vscode.languages.registerCompletionItemProvider(
+			[{ language: 'energyplus', scheme: 'file' }, { language: 'modelkit', scheme: 'file' }],
+			// loading new EnergyPlus snippets should apply to both 'energyplus' and 'modelkit' languages
+			{
+				provideCompletionItems(document, position) {
+					return completionItems;
+				}
+			}
+		);
+		vscode.window.showInformationMessage(`Autocompletion ready for EnergyPlus v${version} object classes.`);
+    });
+}
+
 // This method is called when your extension is deactivated
-export function deactivate(): void {}
+export function deactivate() {
+    // Dispose of the completion item provider when the extension is deactivated
+    if (completionItemProvider) {
+        completionItemProvider.dispose();
+    }
+}

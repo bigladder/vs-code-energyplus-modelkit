@@ -1,13 +1,13 @@
 {
   "author": "Big Ladder Software",
-  "publisher": "BigLadder",
+  "publisher": "Big Ladder Software",
   "homepage":  "https://github.com/bigladder/vs-code-energyplus-modelkit#readme",
   "license": "BSD-3-Clause",
   "name": "energyplus-modelkit",
   "displayName": "EnergyPlus & Modelkit",
   "description": "Syntax highlighting, auto-completion of text via snippets, and other features to improve workflows with EnergyPlus & Modelkit files.",
   "icon": "images/ladder-icon-square.jpg",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "repository": {
     "type":    "git",
     "url":     "https://github.com/bigladder/vs-code-energyplus-modelkit"
@@ -32,24 +32,6 @@
     ],
   "main": "./out/extension.js",
   "contributes": {
-    "configuration": {
-      "type": "object",
-      "title": "EnergyPlus Version",
-      "properties": {
-        "energyplus-modelkit.energyPlusVersion": {
-          "type": "string",
-          "enum": [
-            "8.0", "8.1", "8.2", "8.3", "8.4", "8.5", "8.6", "8.7", "8.8", "8.9",
-            "9.0", "9.1", "9.2", "9.3", "9.4", "9.5", "9.6",
-            "22.1", "22.2",
-            "23.1", "23.2",
-            "24.1", "24.2"
-          ],
-          "default": "24.2",
-          "description": "Select EnergyPlus version for autocompletion of objects."
-        }
-      }
-    },
     "menus": {
       "commandPalette": [
         {
@@ -177,7 +159,7 @@
       {
         "language": "energyplus",
         "path": "./syntaxes/language-idf.json",
-        "scopeName": "source.idf"
+        "scopeName": "source.v9.0.idf"
       },
       {
         "language": "modelkit",
@@ -192,9 +174,19 @@
     ],
     "snippets": [
       {
+        "language": "energyplus",
+        "path": "./snippets/snippets-idf.json",
+        "scopeName": ".source.v9.0.idf"
+      },
+      {
         "language": "modelkit",
         "path": "./snippets/snippets-modelkit.json",
         "scopeName": ".source.modelkit"
+      },
+      {
+        "language": "modelkit",
+        "path": "./snippets/snippets-idf.json",
+        "scopeName": ".source.v9.0.idf"
       }
     ]
   },
