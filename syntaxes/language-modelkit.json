@@ -31,7 +31,7 @@
           "name": "comment.line.inline.pxt"
         },
         {
-          "comment": "Remaining Modelkit",
+          "comment": "Remaining Modelkit data to follow Ruby syntax",
           "include": "source.ruby"
         }
       ]
@@ -94,7 +94,8 @@
               "name": "comment.line.inline.pxt"
             },
             {
-              "comment": "Remaining Modelkit",              "include": "source.ruby"
+              "comment": "Remaining Modelkit data to follow Ruby syntax",
+              "include": "source.ruby"
             }
           ]
         },
