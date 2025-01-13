@@ -50,7 +50,7 @@ end
 <%# one-line code example :;!#+*/@$^&(){}[]|\<>`~  %>
 <%# note that comment within one-line block will end after first'%>' but not last %>
 <% # this is actually good to point out incorrect syntax %>
-<% # TODO: comments with "," are rendered as EnergyPlus object that needs to be closed with ; %>
+<% # test that comments with "," are NOT rendered as EnergyPlus object that needs to be closed with ; %>
 
 <%
 # multi-line code example
@@ -70,7 +70,7 @@ end
 <% end %>
 <% # test single-line comment within IDF lines %>
 <%
-# TODO: same issue here as well between EnergyPlus object input fields
+# test multi-line code example within IDF lines
 %>
     No,                      !- Do Plant Sizing Calculation
     No,                      !- Run Simulation for Sizing Periods
