@@ -29,11 +29,6 @@
     "Programming Languages", "Snippets"
   ],
   "activationEvents": [
-    "onCommand:energyplus.toggleEnergyPlusComments",
-    "onCommand:modelkit.toggleEnergyPlusComments",
-    "onCommand:modelkit.toggleModelkitComments",
-    "onCommand:energyplus.viewIORef",
-    "onCommand:modelkit.viewIORef"
     ],
   "main": "./out/extension.js",
   "contributes": {
