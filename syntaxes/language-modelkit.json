@@ -14,6 +14,29 @@
       "name": "comment.line.idf"
     },
     {
+      "comment": "Modelkit Input Data (outside of IDF input fields)",
+      "name": "meta.modelkit.pxt",
+      "begin": "<%",
+      "end": "%>",
+      "patterns": [
+        {
+          "comment": "In-line comments",
+          "begin": "#",
+          "beginCaptures": {
+            "5": {
+              "name": "punctuation.definition.comment.inline.pxt"
+            }
+          },
+          "end": "\\n|(?=%>)",
+          "name": "comment.line.inline.pxt"
+        },
+        {
+          "comment": "Remaining Modelkit",
+          "include": "source.ruby"
+        }
+      ]
+    },
+    {
       "comment": "EnergyPlus Input Data",
       "name": "meta.energyplus.idf",
       "begin": "^\\s*([^0-9!,;][^!,;]*)\\s*,",
@@ -79,29 +102,6 @@
           "comment": "Snippet Fields",
           "match": "\\?\\?\\?",
           "name": "storage.input.idf"
-        }
-      ]
-    },
-    {
-      "comment": "Modelkit Input Data (outside of IDF input fields)",
-      "name": "meta.modelkit.pxt",
-      "begin": "<%",
-      "end": "%>",
-      "patterns": [
-        {
-          "comment": "In-line comments",
-          "begin": "#",
-          "beginCaptures": {
-            "5": {
-              "name": "punctuation.definition.comment.inline.pxt"
-            }
-          },
-          "end": "\\n|(?=%>)",
-          "name": "comment.line.inline.pxt"
-        },
-        {
-          "comment": "Remaining Modelkit",
-          "include": "source.ruby"
         }
       ]
     }
