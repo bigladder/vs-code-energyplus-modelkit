@@ -14,6 +14,29 @@
       "name": "comment.line.idf"
     },
     {
+      "comment": "Modelkit Input Data (outside of IDF input fields)",
+      "name": "meta.modelkit.pxt",
+      "begin": "<%",
+      "end": "%>",
+      "patterns": [
+        {
+          "comment": "In-line comments",
+          "begin": "#",
+          "beginCaptures": {
+            "5": {
+              "name": "punctuation.definition.comment.inline.pxt"
+            }
+          },
+          "end": "\\n|(?=%>)",
+          "name": "comment.line.inline.pxt"
+        },
+        {
+          "comment": "Remaining Modelkit data to follow Ruby syntax",
+          "include": "source.ruby"
+        }
+      ]
+    },
+    {
       "comment": "EnergyPlus Input Data",
       "name": "meta.energyplus.idf",
       "begin": "^\\s*([^0-9!,;][^!,;]*)\\s*,",
@@ -36,7 +59,7 @@
         },
         {
           "comment": "Number",
-          "match": "(^|,|\\s*)\\s*(-?(0|[1-9][0-9]*)(\\.[0-9]*)?((e|E)(\\+|-)[0-9]+)?)\\s*",
+          "match": "(^|\\s*)\\s*(-?(0|[1-9][0-9]*)(\\.[0-9]*)?((e|E)(\\+|-)[0-9]+)?)\\s*",
           "captures": {
             "0": {
               "name": "constant.numeric.idf"
@@ -55,29 +78,31 @@
           "name": "comment.line.inline.idf"
         },
         {
-          "comment": "Modelkit Content",
+          "comment": "Modelkit Input Data (within IDF input fields)",
           "begin": "<%",
           "end": "%>",
           "patterns": [
             {
+              "comment": "In-line comments",
+              "begin": "#",
+              "beginCaptures": {
+                "5": {
+                  "name": "punctuation.definition.comment.inline.pxt"
+                }
+              },
+              "end": "\\n|(?=%>)",
+              "name": "comment.line.inline.pxt"
+            },
+            {
+              "comment": "Remaining Modelkit data to follow Ruby syntax",
               "include": "source.ruby"
             }
-          ]        
+          ]
         },
         {
           "comment": "Snippet Fields",
           "match": "\\?\\?\\?",
           "name": "storage.input.idf"
-        }
-      ]
-    },
-    {
-      "comment": "Modelkit Input Data",
-      "begin": "<%",
-      "end": "%>",
-      "patterns": [
-        {
-          "include": "source.ruby"
         }
       ]
     }

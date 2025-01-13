@@ -1,0 +1,6 @@
+! <EnergyManagementSystem:Actuator Available>, Component Unique Name, Component Type,  Control Type, Units
+EnergyManagementSystem:Actuator Available,Environment,Weather Data,Outdoor Dry Bulb,[C]
+! TODO: likely shouldn't look for ";" to close objects, since not defined in this file
+
+EnergyManagementSystem:Actuator Available,841F1E,Surface,Interior Surface Convection Heat Transfer Coefficient,[W/m2-K]
+! TODO: combination of numbers and letters in object names cause mix of formatting
