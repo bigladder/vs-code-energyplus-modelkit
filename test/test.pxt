@@ -47,10 +47,18 @@ end
     ,                        !- Maximum Number of Warmup Days
     1;                       !- Minimum Number of Warmup Days
 
-<%# one-line code example :;!#+*/@$^&(){}[]|\<>`~ #%>
-<%# TODO: comment within one-line block doesn't end correctly, should stop at trailing \%\> %>
+<%# one-line code example :;!#+*/@$^&(){}[]|\<>`~  %>
+<%# note that comment within one-line block will end after first'%>' but not last %>
+<% # this is actually good to point out incorrect syntax %>
+<% # TODO: comments with "," are rendered as EnergyPlus object that needs to be closed with ; %>
+
 <%
-# TODO: this is currently ending comment instead
+# multi-line code example
+%>
+<% <%# example of a code block within a code block on same line %> %>
+<% # this is also good to point out incorrect syntax %>
+<%
+# exiting incorrect code block syntax highlighting
 %>
   SimulationControl,
 <% if hvac_model == "DETAILED" %>
